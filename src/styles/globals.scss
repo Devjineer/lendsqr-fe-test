@@ -1,6 +1,12 @@
-$primary-color: #FBFBFB;
+@use 'color';
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
 
 body {
   font-family: Arial, sans-serif;
-  background-color: $primary-color;
+  background-color: color.$primary-color;
 }

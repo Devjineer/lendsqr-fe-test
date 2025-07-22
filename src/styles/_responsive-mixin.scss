@@ -1,0 +1,25 @@
+@use "sass:map";
+// $breakpoint-xs: 480px; // phones
+// $breakpoint-sm: 768px; // tablets
+// $breakpoint-md: 1024px; // small desktops
+// $breakpoint-lg: 1200px; // large desktops
+
+$breakpoints: (
+  xs: 480px,
+  sm: 768px,
+  md: 1024px,
+  lg: 1200px,
+  xl: 1440px,
+);
+
+@mixin respond-to($breakpoint) {
+  @if map.has-key($breakpoints, $breakpoint) {
+    $value: map.get($breakpoints, $breakpoint);
+
+    @media screen and (min-width: $value) {
+      @content;
+    }
+  } @else {
+    @warn "Unknown breakpoint `#{$breakpoint}`, check `#{$breakpoints}`";
+  }
+}
