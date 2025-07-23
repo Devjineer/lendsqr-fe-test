@@ -1,0 +1,23 @@
+@use "color";
+@use "./responsive-mixin" as *;
+@use "./layout" as *;
+
+.dashboard {
+  // border: solid 2px red;
+
+  @include respond-to(md) {
+    @include flex-layout("flex-it", "flex-start");
+  }
+}
+
+.sidebar {
+  width: 300px;
+  border: solid 2px red;
+  // height: calc(100vh - 80px);
+  display: none;
+  
+  @include respond-to(md) {
+    height: calc(100vh - 100px);
+    display: block;
+  }
+}

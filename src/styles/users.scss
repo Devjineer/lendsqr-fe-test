@@ -1,0 +1,9 @@
+@use 'color';
+@use './responsive-mixin' as *;
+@use './layout' as *;
+
+.users {
+  border: solid 2px;
+  padding: 20px 24px;
+  flex: 1
+}

@@ -1,13 +1,14 @@
 import { Route, Routes } from "react-router";
-import { DashBoard, Login } from "./pages";
+import { Login } from "./pages";
+import DashBoardRoutes from "./routes/DashBoardRoutes";
 
 function App() {
   return (
     <Routes>
       <Route index element={<Login />} />
-      <Route path="/dashboard" element={<DashBoard />} />
+      <Route path="/dashboard/*" element={<DashBoardRoutes />} />
     </Routes>
-  )
+  );
 }
 
-export default App
+export default App;

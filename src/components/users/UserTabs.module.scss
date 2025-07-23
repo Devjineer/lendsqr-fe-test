@@ -1,0 +1,58 @@
+@mixin tabIconColor() {
+  background-color: rgba(212, 208, 236, 0.219);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  // border: solid 2px;
+  margin: 40px 0;
+  // overflow: hidden;
+  overflow-x: scroll;
+}
+
+.tab__container {
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  height: 160px;
+  // border: solid 2px;
+  column-gap: 26px
+}
+
+.tab {
+  width: 240px;
+  height: 160px;
+  padding: 20px 0 30px 30px;
+  background-color: white;
+  box-shadow: 0 3px 20px #0000000A;
+  border: solid 1px #213F7D0F;
+}
+.tab__main {
+  // border: solid 2px red;
+}
+
+
+.tab__icon {
+  @include tabIconColor;
+}
+
+.tab__info {
+  margin-top: 14px;
+}
+
+.tab__title {
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.tab__subtitle {
+  font-size: 24px;
+  font-weight: bold;
+  margin-top: 12px;
+}
