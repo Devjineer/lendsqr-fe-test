@@ -10,3 +10,8 @@ body {
   font-family: Arial, sans-serif;
   background-color: color.$primary-color;
 }
+
+button {
+  border: none;
+  cursor: pointer;
+}

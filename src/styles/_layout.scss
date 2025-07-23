@@ -1,0 +1,12 @@
+@mixin flex-layout($type) {
+  display: flex;
+  align-items: center;
+
+  @if $type == "flex-center" {
+    justify-content: center;
+  } @else if $type == "flex-btw" {
+    justify-content: space-between;
+  } @else {
+    @error "#{$type} is not valid"
+  }
+}

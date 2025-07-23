@@ -1,0 +1,141 @@
+@use "color";
+@use "./responsive-mixin" as *;
+@use "./layout" as *;
+
+.header {
+  height: 80px;
+  // border: solid 2px;
+  padding: 10px 16px;
+  @include flex-layout("flex-btw");
+
+  @include respond-to(md) {
+    height: 100px;
+    padding: 35px 30px;
+  }
+}
+
+.header__container {
+  // border: solid 2px;
+  width: 100%;
+  @include flex-layout("flex-btw");
+}
+
+.header__control {
+  @include flex-layout("flex-btw");
+  gap: 10px;
+}
+
+.menu__btn {
+  background-color: transparent;
+  width: 16px;
+  height: 16px;
+  // border: solid 2px;
+
+  .menu__btn-icon {
+    width: 100%;
+    height: 100%;
+  }
+
+  @include respond-to(md) {
+    display: none;
+  }
+}
+
+.header__logo {
+  // border: solid 2px;
+  width: 90px;
+  margin-left: 2px;
+  @include flex-layout("flex-btw");
+
+  .header__logo-img {
+    width: 100%;
+  }
+
+  @include respond-to(md) {
+    width: 144px;
+  }
+}
+
+.searchbar {
+  display: none;
+}
+
+.header__right {
+  @include flex-layout("flex-btw");
+  // border: solid 2px;
+  column-gap: 14px;
+
+  @include respond-to(md) {
+    column-gap: 20px;
+  }
+}
+
+.header__link {
+  font-size: 14px;
+  color: color.$deep-blue;
+  @include respond-to(md) {
+    font-size: 16px;
+  }
+}
+
+.header__notification-btn {
+  width: 16px;
+  height: 16px;
+  background-color: transparent;
+
+  .header__notification-icon {
+    width: 100%;
+    height: 100%;
+  }
+
+  @include respond-to(md) {
+    width: 26px;
+    height: 26px;
+  }
+}
+
+.header__profile {
+  @include flex-layout("flex-btw");
+  gap: 5px;
+
+  .header__avatar {
+    width: 40px;
+    height: 40px;
+
+    .header__avatar-img {
+      width: 100%;
+    }
+  }
+
+  .header__user-info {
+    @include flex-layout("flex-btw");
+    // margin-left: 2px;
+
+    .header__username {
+      display: none;
+      color: color.$deep-blue;
+    }
+
+    .header__dropdown-btn {
+      background-color: transparent;
+      padding: 4px;
+      @include flex-layout('flex-btw');
+    }
+  }
+
+  @include respond-to(md) {
+    .header__avatar {
+      width: 48px;
+      height: 48px;
+    }
+
+    .header__user-info {
+      @include flex-layout("flex-btw");
+      column-gap: 4px;
+
+      .header__username {
+        display: block;
+      }
+    }
+  }
+}

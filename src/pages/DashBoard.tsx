@@ -1,8 +1,11 @@
+import MainLayout from "../components/template/MainLayout";
 
 const DashBoard = () => {
   return (
-    <div>DashBoard</div>
-  )
-}
+    <MainLayout>
+      <p>Dashboard</p>
+    </MainLayout>
+  );
+};
 
-export default DashBoard
+export default DashBoard;

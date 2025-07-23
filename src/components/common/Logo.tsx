@@ -1,10 +1,14 @@
 import { images } from "../../constants";
+import IconWrapper from "./IconWrapper";
 
 const Logo = ({ className, imgClassName }) => {
   return (
-    <div className={className}>
-      <img src={images.logo} alt="logo" className={imgClassName} />
-    </div>
+    <IconWrapper
+      src={images.logo}
+      alt="logo"
+      className={className}
+      imgClassName={imgClassName}
+    />
   );
 };
 

@@ -1,6 +1,6 @@
 declare interface BtnProps {
   title?: string;
-  icon?: ReactElement;
+  icon?: ReactNode;
   className?: string;
   type?: string;
   onBtnClick?: () => void;
