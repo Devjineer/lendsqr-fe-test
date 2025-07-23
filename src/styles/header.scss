@@ -58,6 +58,33 @@
 
 .searchbar {
   display: none;
+
+  @include respond-to(md) {
+    @include flex-layout("flex-center");
+    width: 400px;
+    height: 40px;
+    background-color: white;
+    // border: solid 2px red;
+
+    .searchbar__input {
+      height: 100%;
+      // width: 100%;
+      flex: 1;
+      padding: 0 16px;
+      background-color: transparent;
+      border: solid 1px color.$deep-blue;
+      border-radius: 8px 0 0 8px;
+      outline: none;
+    }
+
+    .searchbar__btn {
+      width: 56px;
+      height: 100%;
+      background-color: color.$sky-blue;
+      border-radius: 0 8px 8px 0;
+      @include flex-layout('flex-center');
+    }
+  }
 }
 
 .header__right {
@@ -119,7 +146,7 @@
     .header__dropdown-btn {
       background-color: transparent;
       padding: 4px;
-      @include flex-layout('flex-btw');
+      @include flex-layout("flex-btw");
     }
   }
 
