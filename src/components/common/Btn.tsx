@@ -4,11 +4,13 @@ const PlainBtn = ({
   className,
   type = "plain",
   onBtnClick,
+  iconRight
 }: BtnProps) => {
   return (
     <button className={`${className} ${type}`} onClick={onBtnClick}>
       {icon && icon}
       {title && title}
+      {iconRight && iconRight}
     </button>
   );
 };

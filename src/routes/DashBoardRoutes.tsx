@@ -15,7 +15,9 @@ const DashBoardRoutes = () => {
           link="nav__ul-link"
           linksWrapper="nav__ul"
           linkContainer="link__container"
+          addedBtnClass="sidebar__btn"
         />
+
         <Routes>
           <Route path="/users" element={<Users />} />
           <Route path="/user-detail" element={<UserDetail />} />

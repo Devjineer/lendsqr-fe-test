@@ -1,6 +1,7 @@
 declare interface BtnProps {
   title?: string;
   icon?: ReactNode;
+  iconRight?: ReactNode;
   className?: string;
   type?: string;
   onBtnClick?: () => void;
@@ -14,4 +15,5 @@ declare interface SideBarProps {
   active?: string;
   linkContainer: string;
   linksWrapper: string;
+  addedBtnClass?: string;
 }
