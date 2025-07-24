@@ -3,10 +3,24 @@ import { icons, images } from "../../constants";
 import { PlainBtn } from "./Btn";
 import IconWrapper from "./IconWrapper";
 import Logo from "./Logo";
+import { useState } from "react";
+import SideBar from "../SideBar";
 
 const Header = () => {
+  const [toggle, setToggle] = useState(false);
   return (
     <header className="header">
+      {toggle && (
+        <SideBar
+          sidebar="header__sidebar no-scrollbar"
+          section="header__sidebar-nav"
+          sectionTitle="header__nav-title"
+          link="header__ul-link"
+          linksWrapper="header__nav-ul"
+          linkContainer="header__link-container"
+        />
+      )}
+
       <div className="header__container">
         <div className="header__control">
           <PlainBtn
@@ -14,6 +28,7 @@ const Header = () => {
             icon={
               <img className="menu__btn-icon" alt="menu" src={icons.menu} />
             }
+            onBtnClick={() => setToggle((prev) => !prev)}
           />
           <Logo className="header__logo" imgClassName="header__logo-img" />
         </div>

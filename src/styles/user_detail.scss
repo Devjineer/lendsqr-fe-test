@@ -1,0 +1,78 @@
+@use "color";
+@use "./responsive-mixin" as *;
+@use "./layout" as *;
+
+@mixin btn_theme($theme) {
+  border: 1px solid $theme;
+  padding: 12px 16px;
+  color: $theme;
+  background-color: transparent;
+  border-radius: 8px;
+  font-size: 12px;
+  @include respond-to(md) {
+    font-size: 14px;
+  }
+}
+
+.user__detail {
+  border: solid 2px;
+  padding: 20px 24px;
+  flex: 1;
+}
+
+.back__btn {
+  background-color: transparent;
+  @include flex-layout("flex-btw");
+  column-gap: 13px;
+}
+
+.user__detail-header {
+  margin-top: 26px;
+  margin-bottom: 46px;
+
+  @include respond-to(md) {
+    @include flex-layout("flex-btw");
+  }
+}
+
+.user__detail-title {
+}
+
+.user__detail-cta {
+  @include flex-layout("flex-it");
+  column-gap: 20px;
+}
+
+.user__detail-cta {
+  margin-top: 24px;
+
+  @include respond-to(md) {
+    margin-top: 0;
+  }
+}
+
+
+.danger__btn {
+  @include btn_theme(color.$danger);
+}
+
+.info__btn {
+  @include btn_theme(color.$sky-blue);
+}
+
+.user__board {
+  // border: solid 2px;
+  height: 210px;
+  background-color: white;
+  box-shadow: 0 3px 20px #0000000A;
+}
+
+.more__user-detail {
+  margin-top: 30px;
+  background-color: white;
+  box-shadow: 0 3px 20px #0000000A;
+}
+
+.detail__box {
+  padding: 30px;
+}

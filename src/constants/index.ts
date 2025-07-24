@@ -8,4 +8,47 @@ const users = [
   { title: "Users With Savings", count: 2453, icon: icons.usertabicon4 },
 ];
 
-export { icons, images, users };
+const customers_navigation = [
+  {
+    title: "Users",
+    icons: icons.users,
+    href: "/dashboard/users",
+  },
+  {
+    title: "Guarantors",
+    icons: icons.users,
+    href: "/",
+  },
+  {
+    title: "Loans",
+    icons: icons.users,
+    href: "/",
+  },
+  {
+    title: "Decision Models",
+    icons: icons.users,
+    href: "/",
+  },
+  {
+    title: "Savings",
+    icons: icons.users,
+    href: "/",
+  },
+  {
+    title: "Loan Request",
+    icons: icons.users,
+    href: "/",
+  },
+  {
+    title: "Whitelist",
+    icons: icons.users,
+    href: "/",
+  },
+  {
+    title: "Karma",
+    icons: icons.users,
+    href: "/",
+  },
+];
+
+export { icons, images, users, customers_navigation };
