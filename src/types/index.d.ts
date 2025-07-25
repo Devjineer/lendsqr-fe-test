@@ -17,3 +17,9 @@ declare interface SideBarProps {
   linksWrapper: string;
   addedBtnClass?: string;
 }
+
+declare interface MoreDetailsBlockProps<T> {
+  title: string;
+  details: T;
+  displayItems: (details: T) => ReactNode;
+}

@@ -1,7 +1,7 @@
 import "../styles/dashboard_routes.scss";
 import MainLayout from "../components/template/MainLayout";
 import { Route, Routes } from "react-router";
-import { UserDetail, Users } from "../pages";
+import { Dashboard, UserDetail, Users } from "../pages";
 import SideBar from "../components/SideBar";
 
 const DashBoardRoutes = () => {
@@ -19,6 +19,7 @@ const DashBoardRoutes = () => {
         />
 
         <Routes>
+          <Route path="/" element={<Dashboard />} />
           <Route path="/users" element={<Users />} />
           <Route path="/user-detail" element={<UserDetail />} />
           <Route path="*" element={<div>Not Found</div>} />

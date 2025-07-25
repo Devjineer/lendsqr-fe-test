@@ -28,8 +28,14 @@ import services from "../assets/icons/services.png";
 import settle from "../assets/icons/settle.png";
 import transact from "../assets/icons/transact.png";
 import guarantors from "../assets/icons/guarantors.png";
+import star from "../assets/icons/star.png";
+import star_filled from "../assets/icons/star_filled.png";
+import no_photo from "../assets/icons/no_photo.png";
+import action from "../assets/icons/action.png";
 
 const icons = {
+  action,
+  no_photo,
   guarantors,
   back,
   users,
@@ -60,6 +66,8 @@ const icons = {
   services,
   settle,
   transact,
+  star,
+  star_filled,
 };
 
 export default icons;

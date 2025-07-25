@@ -22,14 +22,135 @@ const UserDetail = () => {
         </div>
       </header>
 
-      <div className="user__board"></div>
+      <div className="user__board">
+        <div className="user__board-details">
+          <div className="user__photo-name">
+            {/* Placeholder for user photo */}
+            <div className="user__photo">
+              <img src={icons.no_photo} alt="User" />
+            </div>
+            <div>
+              <h3 className="user__name">Devjineer</h3>
+              <p className="user__id">LSQFf587g90</p>
+            </div>
+          </div>
+
+          <div className="user__tier">
+            <p className="user__tier-text">User's Tier</p>
+            <div className="user__tier-icon">
+              <img src={icons.star_filled} alt="star" />
+              <img src={icons.star} alt="star" />
+              <img src={icons.star} alt="star" />
+            </div>
+          </div>
+
+          <div className="user__account">
+            <p className="user__account-number--value">#200,000.00</p>
+            <p className="user__account-number">9912345678/Providus Bank</p>
+          </div>
+        </div>
+
+        <div></div>
+      </div>
 
       <div className="more__user-detail">
-        <MoreDetailsBlock title="Personal Information" className="detail__box" />
-        <MoreDetailsBlock title="Education and Employment"  className="detail__box"  />
-        <MoreDetailsBlock title="Socials"  className="detail__box"  />
-        <MoreDetailsBlock title="Guarantors"  className="detail__box"  />
-        <MoreDetailsBlock title=""  className="detail__box"  />
+        <MoreDetailsBlock
+          title="Personal Information"
+          details={{
+            fullname: "Grace Effion",
+            phone: "08167504874",
+            email: "Joseybusiness@gmail.com",
+            bvn: "22442788344",
+            gender: "mail",
+            status: "Relationship",
+            children: "None",
+            residence: "No 3 taj, Hassan",
+          }}
+          displayItems={(item) => (
+            <>
+              {Object.entries(item).map(([key, item]) => {
+                return (
+                  <div key={key}>
+                    <h4>{key}</h4>
+                    <p>{item}</p>
+                  </div>
+                );
+              })}
+            </>
+          )}
+        />
+
+        <MoreDetailsBlock
+          title="Education and Employment"
+          details={{
+            'level of education': "",
+            'employment status': "",
+            'sector of employment': "",
+            'duration of employment': "",
+            'office email': "",
+            'monthly income': "",
+            'loan repayment': "",
+            residence: "",
+          }}
+          displayItems={(item) => (
+            <>
+              {Object.entries(item).map(([key, item]) => {
+                return (
+                  <div key={key}>
+                    <h4>{key}</h4>
+                    <p>{item}</p>
+                  </div>
+                );
+              })}
+            </>
+          )}
+        />
+        <MoreDetailsBlock
+          title="Socials"
+          details={{
+            fullname: "",
+            phone: "",
+            email: "",
+            bvn: "",
+            gender: "",
+            status: "",
+            children: "",
+            residence: "",
+          }}
+          displayItems={(item) => (
+            <>
+              {Object.entries(item).map(([key, item]) => {
+                return (
+                  <div key={key}>
+                    <h4>{key}</h4>
+                    <p>{item}</p>
+                  </div>
+                );
+              })}
+            </>
+          )}
+        />
+        <MoreDetailsBlock
+          title="Guarantors"
+          details={{
+            fullname: "",
+            phone: "",
+            email: "",
+            relationship: "",
+          }}
+          displayItems={(item) => (
+            <>
+              {Object.entries(item).map(([key, item]) => {
+                return (
+                  <div key={key}>
+                    <h4>{key}</h4>
+                    <p>{item}</p>
+                  </div>
+                );
+              })}
+            </>
+          )}
+        />
       </div>
     </section>
   );

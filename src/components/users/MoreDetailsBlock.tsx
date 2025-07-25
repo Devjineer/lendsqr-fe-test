@@ -1,9 +1,13 @@
-const MoreDetailsBlock = ({ title, className, moreDetailWrap }) => {
+const MoreDetailsBlock = <T,>({
+  title,
+  details,
+  displayItems,
+}: MoreDetailsBlockProps<T>) => {
   return (
-    <div className={className}>
-      <div>
-        <h3>{title}</h3>
-      </div>
+    <div className="detail__box">
+      <h3 className="detail__box-title">{title}</h3>
+
+      <div className="details__wrapper">{displayItems(details) ?? ""}</div>
     </div>
   );
 };
