@@ -5,6 +5,7 @@ import { icons } from "../../constants";
 import "./../../styles/dashboard_user.scss";
 import useToggle from "../../contexts/useToggle";
 import { Link } from "react-router";
+import { addItemToLocalStore } from "../../utils/local-store";
 
 const USERS_API = "https://68823e7e66a7eb81224df7e7.mockapi.io/api/v1/users";
 
@@ -16,31 +17,14 @@ const status_theme: { [key: string]: string } = {
 };
 
 const DashBoardUserLayout = ({ sectionTitle }: { sectionTitle: string }) => {
-  const [users, setUsers] = useState([]);
+  const [users, setUsers] = useState<User[]>([]);
   const { toggle, toggleOn, toggleOff } = useToggle();
-  const actionBoard = useRef(null);
-
-  const openActionBoard = async (
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ) => {
-    e.preventDefault();
-    e.stopPropagation();
-    await toggleOn();
-    const element: HTMLDivElement = actionBoard.current;
-    const { clientX, clientY } = e;
-    const { scrollY, scrollX } = window;
-    const screenX = clientX + scrollX;
-    const screenY = clientY + scrollY;
-
-    if (element) {
-      element.style.left = `${screenX - 100}px`;
-      element.style.top = `${screenY - 50}px`;
-    }
-  };
+  const actionBoard = useRef<HTMLDivElement | null>(null);
 
   async function fetchAllUsers() {
     const res = await fetch(`${USERS_API}`);
     const users = await res.json();
+    console.log("Fetched users:", users);
     return users;
   }
 
@@ -59,12 +43,42 @@ const DashBoardUserLayout = ({ sectionTitle }: { sectionTitle: string }) => {
     };
   }, [toggleOff]);
 
+  // call to add to local storage
+  const addItemLocally = (id: string) => {
+    const currentItem = users.filter((user) => user.id == id)[0];
+    addItemToLocalStore('user', currentItem);
+    // console.log(currentItem);
+  };
+
+  const openActionBoard = async (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    await toggleOn();
+    const element: HTMLDivElement | null = actionBoard.current;
+    const { clientX, clientY } = e;
+    const { scrollY, scrollX } = window;
+    const screenX = clientX + scrollX;
+    const screenY = clientY + scrollY;
+
+    if (element) {
+      element.style.left = `${screenX - 100}px`;
+      element.style.top = `${screenY - 50}px`;
+    }
+  };
+
   return (
     <section className="section__wrap" onClick={toggleOff}>
       {toggle && (
         <div className="call__action" ref={actionBoard}>
           <div>
-            <Link to="" className="call__action-link">
+            <Link
+              to="/dashboard/user-detail"
+              className="call__action-link"
+              onClick={toggleOff}
+            >
               <img src={icons.eye} alt="eye" />
               <span>View Details</span>
             </Link>
@@ -81,7 +95,7 @@ const DashBoardUserLayout = ({ sectionTitle }: { sectionTitle: string }) => {
           </div>
         </div>
       )}
-      <h2>{sectionTitle}</h2>
+      <h2 className="section__wrap-title">{sectionTitle}</h2>
 
       <UserTabs />
 
@@ -127,16 +141,18 @@ const DashBoardUserLayout = ({ sectionTitle }: { sectionTitle: string }) => {
             <PlainBtn
               className="action__btn"
               icon={<img src={icons.action} alt="action" />}
+              onBtnClick={openActionBoard}
             />
           </div>
         </div> */}
+
         {users.slice(0, 10).map((user: User) => (
           <div className="result__table-body" key={user.id}>
             <div>{user?.organisation.slice(0, 12)}...</div>
             <div>{user.username.slice(0, 25)}...</div>
-            <div>{user.email.slice(0, 15)}...</div>
-            <div>{user.phoneNumber.slice(0, 15)}...</div>
-            <div>{new Date(user.dateJoined).toLocaleDateString()}</div>
+            <div>{user.personal_info.email.slice(0, 15)}...</div>
+            <div>{user.personal_info.phone.slice(0, 15)}...</div>
+            <div>{new Date(user.date_joined).toLocaleDateString()}</div>
             <div>
               <span className={status_theme[user.status.toLowerCase()]}>
                 {user.status}
@@ -146,7 +162,10 @@ const DashBoardUserLayout = ({ sectionTitle }: { sectionTitle: string }) => {
               <PlainBtn
                 className="action__btn"
                 icon={<img src={icons.action} alt="action" />}
-                onBtnClick={openActionBoard}
+                onBtnClick={(e) => {
+                  openActionBoard(e);
+                  addItemLocally(user.id);
+                }}
               />
             </div>
           </div>

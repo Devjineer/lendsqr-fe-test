@@ -5,7 +5,6 @@ import {
   icons,
   settings_navigations,
 } from "../constants";
-// import { PlainBtn } from "./common/Btn";
 
 const SideBar = ({
   sidebar,

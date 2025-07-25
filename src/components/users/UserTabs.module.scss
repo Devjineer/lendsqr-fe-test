@@ -1,3 +1,6 @@
+@use "../../styles/fonts" as fonts;
+@use "../../styles/color" as color;
+
 @mixin tabIconColor() {
   background-color: rgba(212, 208, 236, 0.219);
   width: 40px;
@@ -9,9 +12,7 @@
 }
 
 .container {
-  // border: solid 2px;
   margin: 40px 0;
-  // overflow: hidden;
   overflow-x: scroll;
 }
 
@@ -21,7 +22,7 @@
   width: fit-content;
   height: 160px;
   // border: solid 2px;
-  column-gap: 26px
+  column-gap: 26px;
 }
 
 .tab {
@@ -29,13 +30,12 @@
   height: 160px;
   padding: 20px 0 30px 30px;
   background-color: white;
-  box-shadow: 0 3px 20px #0000000A;
-  border: solid 1px #213F7D0F;
+  box-shadow: 0 3px 20px #0000000a;
+  border: solid 1px #213f7d0f;
 }
 .tab__main {
   // border: solid 2px red;
 }
-
 
 .tab__icon {
   @include tabIconColor;
@@ -49,10 +49,14 @@
   text-transform: uppercase;
   font-size: 14px;
   font-weight: 500;
+  font-family: fonts.$work-sans;
+  color: color.$deep-blue;
 }
 
 .tab__subtitle {
   font-size: 24px;
-  font-weight: bold;
+  font-weight: 600;
   margin-top: 12px;
+  font-family: fonts.$work-sans;
+  color: color.$deep-blue;
 }

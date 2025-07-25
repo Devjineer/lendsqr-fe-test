@@ -1,15 +1,20 @@
+import { useState } from "react";
 import { PlainBtn } from "../components/common/Btn";
 import MoreDetailsBlock from "../components/users/MoreDetailsBlock";
 import { icons } from "../constants";
 import "../styles/user_detail.scss";
+import getItemFromLocalStore from "../utils/local-store";
 
 const UserDetail = () => {
+  const [user] = useState(getItemFromLocalStore("user") || {});
+  console.log(user);
   return (
     <section className="user__detail">
       <PlainBtn
         className="back__btn"
         icon={<img src={icons.back} className="" alt="back" />}
         title="Back to Users"
+        onBtnClick={() => history.back()}
       />
 
       <header className="user__detail-header">
@@ -30,8 +35,8 @@ const UserDetail = () => {
               <img src={icons.no_photo} alt="User" />
             </div>
             <div>
-              <h3 className="user__name">Devjineer</h3>
-              <p className="user__id">LSQFf587g90</p>
+              <h3 className="user__name">{user?.username}</h3>
+              <p className="user__id">{user?.id}</p>
             </div>
           </div>
 
@@ -58,12 +63,12 @@ const UserDetail = () => {
           title="Personal Information"
           details={{
             fullname: "Grace Effion",
-            phone: "08167504874",
-            email: "Joseybusiness@gmail.com",
-            bvn: "22442788344",
-            gender: "mail",
-            status: "Relationship",
-            children: "None",
+            phone: user?.phoneNumber,
+            email: user?.email,
+            bvn: user?.bvn,
+            gender: user?.gender ?? "male",
+            status: user?.maritalStatus,
+            children: user?.children ?? 0,
             residence: "No 3 taj, Hassan",
           }}
           displayItems={(item) => (
@@ -83,13 +88,13 @@ const UserDetail = () => {
         <MoreDetailsBlock
           title="Education and Employment"
           details={{
-            'level of education': "",
-            'employment status': "",
-            'sector of employment': "",
-            'duration of employment': "",
-            'office email': "",
-            'monthly income': "",
-            'loan repayment': "",
+            "level of education": user?.education,
+            "employment status": user?.employed ?? "Unemployed",
+            "sector of employment": user?.sectorOfEmployment ?? "Not specified",
+            "duration of employment": "",
+            "office email": "",
+            "monthly income": "",
+            "loan repayment": "",
             residence: "",
           }}
           displayItems={(item) => (
@@ -133,10 +138,10 @@ const UserDetail = () => {
         <MoreDetailsBlock
           title="Guarantors"
           details={{
-            fullname: "",
-            phone: "",
-            email: "",
-            relationship: "",
+            fullname: user?.guarantorName ?? "Not specified",
+            phone: user?.guarantorPhone ?? "Not specified",
+            email: user?.guarantorEmail ?? "Not specified",
+            relationship: user?.guarantorRltshp ?? "Not specified",
           }}
           displayItems={(item) => (
             <>

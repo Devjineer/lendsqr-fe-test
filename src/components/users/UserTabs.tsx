@@ -8,7 +8,7 @@ const UserTabs = () => {
       <div className={styles.tab__container}>
         {users.map(({ icon, title, count }) => {
           return (
-            <div className={styles.tab}>
+            <div className={styles.tab} key={title}>
               <div className={styles.tab__main}>
                 <IconWrapper
                   src={icon}

@@ -32,6 +32,7 @@ const Header = () => {
             }
             onBtnClick={toggleOn}
           />
+          
           <Link to="/">
             <Logo className="header__logo" imgClassName="header__logo-img" />
           </Link>
@@ -57,7 +58,11 @@ const Header = () => {
         </div>
 
         <div className="header__right">
-          <a href="/dashboard/user-detail" className="header__link">
+          <a
+            // href="/dashboard/user-detail"
+            href="/"
+            className="header__link"
+          >
             Docs
           </a>
 

@@ -1,5 +1,6 @@
 @use "sass:map";
 @use "color";
+@use "fonts";
 @use "./responsive-mixin" as *;
 @use "./layout" as *;
 
@@ -40,6 +41,14 @@ $status-colors: (
   // position: relative;
 }
 
+.section__wrap-title {
+  font-size: 24px;
+  font-weight: 500;
+  font-family: fonts.$work-sans;
+  color: color.$deep-blue;
+  margin-bottom: 20px;
+}
+
 .result__table {
   background-color: white;
   padding: 30px;
@@ -55,6 +64,7 @@ $status-colors: (
   column-gap: 35px;
   padding: 22.5px 0;
   width: fit-content;
+  font-family: fonts.$work-sans;
 
   & > div {
     font-size: 14px;
@@ -75,6 +85,7 @@ $status-colors: (
 
 .result__table-head > div {
   font-weight: bold;
+  font-size: 12px;
 }
 
 .result__table-body {
@@ -119,7 +130,7 @@ $status-colors: (
   & > div {
     @include flex-layout("flex-center", "flex-start");
     flex-direction: column;
-    row-gap: 20px
+    row-gap: 20px;
   }
 }
 
@@ -127,6 +138,8 @@ $status-colors: (
   @include flex-layout("flex-it");
   column-gap: 8px;
   font-size: 14px;
+  font-family: fonts.$work-sans;
+  font-weight: 500;
   color: color.$deep-blue;
   text-decoration: none;
   background-color: transparent;

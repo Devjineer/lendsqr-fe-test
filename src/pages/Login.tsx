@@ -1,10 +1,13 @@
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { PlainBtn } from "../components/common/Btn";
 import "../styles/login.scss";
 import Logo from "../components/common/Logo";
 import { images } from "../constants";
 
 const Login = () => {
+  const navigate = useNavigate();
+  const navigateToDashboard = () => navigate("/dashboard");
+
   return (
     <section className="login">
       <div className="login__image-section">
@@ -35,14 +38,14 @@ const Login = () => {
               </div>
             </div>
 
-            <Link to="/dashboard" className="login__forgot-password">
+            <Link to="/" className="login__forgot-password">
               Forgot Password
             </Link>
 
             <PlainBtn
               title="LOG IN"
               className="login__btn"
-              onBtnClick={() => console.log("logging in")}
+              onBtnClick={navigateToDashboard}
             />
           </form>
         </div>

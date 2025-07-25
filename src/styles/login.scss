@@ -1,4 +1,6 @@
 @use "color";
+@use "fonts";
+@use "./layout" as *;
 @use "./responsive-mixin" as *;
 
 .login {
@@ -100,6 +102,7 @@
   color: color.$deep-blue;
   font-weight: bold;
   font-size: 28px;
+  font-family: fonts.$avenir-bold;
   // font-size: 40px;
 }
 
@@ -107,6 +110,7 @@
   color: color.$dull-blue;
   margin-top: 10px;
   font-size: 15px;
+  font-family: fonts.$avenir-regular;
 }
 
 .login__form {
@@ -135,21 +139,20 @@
     outline: none;
     background-color: transparent;
     width: 100%;
-    
-    &::placeholder {
-      color: color.$dull-blue;
-      font-size: 14px;
-    }
+    font-family: fonts.$avenir-regular;
+    font-size: 14px;
+    color: color.$deep-blue;
   }
-  
+
   .login__toggle-password {
     flex: 1;
     padding: 15px;
     color: color.$sky-blue;
     text-transform: uppercase;
     font-weight: 600;
+    $font-family: fonts.$avenir-medium;
     border: none;
-    background-color: white;
+    background-color: transparent;
     font-size: 10px;
     display: flex;
     align-items: center;
@@ -168,6 +171,8 @@
   text-decoration: none;
   color: color.$sky-blue;
   font-size: 12px;
+  font-family: fonts.$avenir-medium;
+  text-transform: uppercase;
 }
 
 .login__btn {
@@ -177,4 +182,6 @@
   border-radius: 8px;
   color: #fff;
   border: none;
+  outline: none;
+  font-family: fonts.$avenir-medium
 }
