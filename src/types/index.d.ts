@@ -29,12 +29,14 @@ declare interface MoreDetailsBlockProps<T> {
 }
 
 declare interface User {
-  id: string;
   organisation: string;
   username: string;
-  email: string;
-  phoneNumber: string;
-  dateJoined: number;
+  personal_info: {
+    email: string;
+    phone: string;
+  };
+  id: string;
+  date_joined: number;
   status: string;
 }
 

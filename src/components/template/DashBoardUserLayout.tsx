@@ -20,6 +20,9 @@ const DashBoardUserLayout = ({ sectionTitle }: { sectionTitle: string }) => {
   const [users, setUsers] = useState<User[]>([]);
   const { toggle, toggleOn, toggleOff } = useToggle();
   const actionBoard = useRef<HTMLDivElement | null>(null);
+  const [pages, setPages] = useState<number[]>([]);
+  const [currentPage, setCurrentPage] = useState(1);
+
 
   async function fetchAllUsers() {
     const res = await fetch(`${USERS_API}`);
@@ -32,6 +35,14 @@ const DashBoardUserLayout = ({ sectionTitle }: { sectionTitle: string }) => {
     fetchAllUsers()
       .then((res) => {
         setUsers(res);
+        // Assuming 10 users per page
+        setCurrentPage(1);
+
+        const pagesArray = new Array(Math.ceil(res.length / 10))
+          .fill(null)
+          .map((_, i) => i + 1);
+
+        setPages(pagesArray);
       })
       .catch((err) => console.log("Error fetching users:", err));
   }, []);
@@ -44,10 +55,10 @@ const DashBoardUserLayout = ({ sectionTitle }: { sectionTitle: string }) => {
   }, [toggleOff]);
 
   // call to add to local storage
-  const addItemLocally = (id: string) => {
-    const currentItem = users.filter((user) => user.id == id)[0];
-    addItemToLocalStore('user', currentItem);
-    // console.log(currentItem);
+  const addItemLocally = (username: string) => {
+    const currentItem = users.filter((user) => user.username == username)[0];
+    console.log(currentItem)
+    addItemToLocalStore("user", currentItem);
   };
 
   const openActionBoard = async (
@@ -110,43 +121,7 @@ const DashBoardUserLayout = ({ sectionTitle }: { sectionTitle: string }) => {
           {/* <div>Actions</div> */}
         </div>
 
-        {/* <div className="result__table-body">
-          <div>{"joseela"}...</div>
-          <div>{"lakdlakd"}...</div>
-          <div>{"lakdlakda"}...</div>
-          <div>{"jlakdlakeal"}...</div>
-          <div>{new Date(166667666766).toLocaleDateString()}</div>
-          <div>
-            <span className={status_theme["active"]}>{"active"}</span>
-          </div>
-          <div>
-            <PlainBtn
-              className="action__btn"
-              icon={<img src={icons.action} alt="action" />}
-              onBtnClick={openActionBoard}
-            />
-          </div>
-        </div>
-
-        <div className="result__table-body">
-          <div>{"joseela"}...</div>
-          <div>{"lakdlakd"}...</div>
-          <div>{"lakdlakda"}...</div>
-          <div>{"jlakdlakeal"}...</div>
-          <div>{new Date(1666676667668883).toLocaleDateString()}</div>
-          <div>
-            <span className={status_theme["pending"]}>{"pending"}</span>
-          </div>
-          <div>
-            <PlainBtn
-              className="action__btn"
-              icon={<img src={icons.action} alt="action" />}
-              onBtnClick={openActionBoard}
-            />
-          </div>
-        </div> */}
-
-        {users.slice(0, 10).map((user: User) => (
+        {users.slice((currentPage - 1 )* 10, (10 * currentPage)).map((user: User) => (
           <div className="result__table-body" key={user.id}>
             <div>{user?.organisation.slice(0, 12)}...</div>
             <div>{user.username.slice(0, 25)}...</div>
@@ -164,12 +139,49 @@ const DashBoardUserLayout = ({ sectionTitle }: { sectionTitle: string }) => {
                 icon={<img src={icons.action} alt="action" />}
                 onBtnClick={(e) => {
                   openActionBoard(e);
-                  addItemLocally(user.id);
+                  addItemLocally(user.username);
                 }}
               />
             </div>
           </div>
         ))}
+      </div>
+
+      <div className="doc__tracker">
+        <p className="doc__text">Showing 100 out of 100</p>
+
+        <div className="pagination">
+          <PlainBtn
+            icon={<img src={icons.prev} className="pagination__btn" />}
+            onBtnClick={() => {
+              if (currentPage > 1) {
+                setCurrentPage(currentPage - 1);
+              }
+            }}
+          />
+
+          <div className="pagination__main">
+            {pages.map((page) => {
+              return (
+                <span
+                  key={page}
+                  className={`${currentPage == page ? "active__span" : ""}`}
+                >
+                  {page}
+                </span>
+              );
+            })}
+          </div>
+
+          <PlainBtn
+            icon={<img src={icons.next} className="pagination__btn" />}
+            onBtnClick={() => {
+              if (currentPage < pages.length) {
+                setCurrentPage(currentPage + 1);
+              }
+            }}
+          />
+        </div>
       </div>
     </section>
   );

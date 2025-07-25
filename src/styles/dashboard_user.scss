@@ -150,3 +150,47 @@ $status-colors: (
     // border: solid 2px;
   }
 }
+
+.doc__tracker {
+  // border: solid;
+  @include flex-layout("flex-btw");
+}
+
+.doc__text {
+  font-family: fonts.$work-sans;
+}
+
+.pagination {
+  @include flex-layout("flex-btw");
+  font-size: 14px;
+  margin-top: 20px;
+}
+
+.pagination__btn {
+  background-color: color.$deep-blue-light;
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+  padding: 5px;
+
+  & > img {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+
+.pagination__main {
+  width: 225px;
+  border: solid 1px #545f7d0a;
+  @include flex-layout("flex-btw");
+
+  & > span {
+    font-family: fonts.$work-sans;
+
+    &.active__span {
+      color: color.$deep-blue;
+      font-weight: bold;  
+    }
+  }
+}
