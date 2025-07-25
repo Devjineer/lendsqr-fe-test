@@ -81,9 +81,9 @@ const Header = () => {
 
           <div className="header__profile">
             <IconWrapper
-              src={images.avatar}
+              icon={images.avatar}
               className="header__avatar"
-              imgClassName="header__avatar-img"
+              iconClassName="header__avatar-img"
               alt="avatar"
             />
 
@@ -93,10 +93,10 @@ const Header = () => {
                 className="header__dropdown-btn"
                 icon={
                   <IconWrapper
-                    src={icons.arrow}
+                    icon={icons.arrow}
                     alt="arrow"
                     className="header__dropdown-icon"
-                    imgClassName="header__dropdown-img"
+                    iconClassName="header__dropdown-img"
                   />
                 }
               />

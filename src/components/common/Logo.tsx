@@ -4,10 +4,10 @@ import IconWrapper from "./IconWrapper";
 const Logo = ({ className, imgClassName }: LogoProps) => {
   return (
     <IconWrapper
-      src={images.logo}
+      icon={images.logo}
       alt="logo"
       className={className}
-      imgClassName={imgClassName}
+      iconClassName={imgClassName}
     />
   );
 };

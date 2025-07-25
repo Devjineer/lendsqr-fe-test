@@ -11,10 +11,10 @@ const UserTabs = () => {
             <div className={styles.tab} key={title}>
               <div className={styles.tab__main}>
                 <IconWrapper
-                  src={icon}
+                  icon={icon}
                   alt={title}
                   className={styles.tab__icon}
-                  imgClassName={styles.tabIcon__img}
+                  iconClassName={styles.tabIcon__img}
                 />
 
                 <div className={styles.tab__info}>
