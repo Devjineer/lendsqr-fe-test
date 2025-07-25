@@ -44,3 +44,10 @@ declare interface LogoProps {
   className: string;
   imgClassName: string;
 }
+
+declare interface IconWrapperProps {
+  className: string;
+  iconClassName: string;
+  icon: string;
+  alt?: string;
+}

@@ -1,7 +1,7 @@
-const IconWrapper = ({ className, imgClassName, src, alt }) => {
+const IconWrapper = ({ className, iconClassName, icon, alt }: IconWrapperProps) => {
   return (
     <div className={className}>
-      <img src={src} alt={alt} className={imgClassName} />
+      <img src={icon} alt={alt} className={iconClassName} />
     </div>
   );
 };
