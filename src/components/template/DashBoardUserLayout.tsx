@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import UserTabs from "../users/UserTabs";
 import { PlainBtn } from "../common/Btn";
 import { icons } from "../../constants";
@@ -6,8 +6,9 @@ import "./../../styles/dashboard_user.scss";
 import useToggle from "../../contexts/useToggle";
 import { Link } from "react-router";
 import { addItemToLocalStore } from "../../utils/local-store";
-
-const USERS_API = "https://68823e7e66a7eb81224df7e7.mockapi.io/api/v1/users";
+import { fetchAllUsers } from "../../services/fetchAllUsers";
+import useResource from "../../contexts/useResource";
+import Loader from "../loaders/Loader";
 
 const status_theme: { [key: string]: string } = {
   active: "active__user",
@@ -17,35 +18,22 @@ const status_theme: { [key: string]: string } = {
 };
 
 const DashBoardUserLayout = ({ sectionTitle }: { sectionTitle: string }) => {
-  const [users, setUsers] = useState<User[]>([]);
+  // const [users, setUsers] = useState<User[]>([]);
   const { toggle, toggleOn, toggleOff } = useToggle();
   const actionBoard = useRef<HTMLDivElement | null>(null);
+
+  const fetchUsers = useCallback(async () => fetchAllUsers(), []);
+  const { data: users, loading } = useResource<User>(fetchUsers);
+
   const [pages, setPages] = useState<number[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
 
-
-  async function fetchAllUsers() {
-    const res = await fetch(`${USERS_API}`);
-    const users = await res.json();
-    console.log("Fetched users:", users);
-    return users;
-  }
-
   useEffect(() => {
-    fetchAllUsers()
-      .then((res) => {
-        setUsers(res);
-        // Assuming 10 users per page
-        setCurrentPage(1);
-
-        const pagesArray = new Array(Math.ceil(res.length / 10))
-          .fill(null)
-          .map((_, i) => i + 1);
-
-        setPages(pagesArray);
-      })
-      .catch((err) => console.log("Error fetching users:", err));
-  }, []);
+    const pagesArray = new Array(Math.ceil(users.length / 10))
+      .fill(null)
+      .map((_, i) => i + 1);
+    setPages(pagesArray);
+  }, [users]);
 
   useEffect(() => {
     window.addEventListener("scroll", toggleOff);
@@ -57,7 +45,7 @@ const DashBoardUserLayout = ({ sectionTitle }: { sectionTitle: string }) => {
   // call to add to local storage
   const addItemLocally = (username: string) => {
     const currentItem = users.filter((user) => user.username == username)[0];
-    console.log(currentItem)
+    console.log(currentItem);
     addItemToLocalStore("user", currentItem);
   };
 
@@ -75,7 +63,7 @@ const DashBoardUserLayout = ({ sectionTitle }: { sectionTitle: string }) => {
     const screenY = clientY + scrollY;
 
     if (element) {
-      element.style.left = `${screenX - 100}px`;
+      element.style.left = `${screenX - 150}px`;
       element.style.top = `${screenY - 50}px`;
     }
   };
@@ -118,37 +106,43 @@ const DashBoardUserLayout = ({ sectionTitle }: { sectionTitle: string }) => {
           <div>Phone Number</div>
           <div>Date Joined</div>
           <div>Status</div>
-          {/* <div>Actions</div> */}
         </div>
-
-        {users.slice((currentPage - 1 )* 10, (10 * currentPage)).map((user: User) => (
-          <div className="result__table-body" key={user.id}>
-            <div>{user?.organisation.slice(0, 12)}...</div>
-            <div>{user.username.slice(0, 25)}...</div>
-            <div>{user.personal_info.email.slice(0, 15)}...</div>
-            <div>{user.personal_info.phone.slice(0, 15)}...</div>
-            <div>{new Date(user.date_joined).toLocaleDateString()}</div>
-            <div>
-              <span className={status_theme[user.status.toLowerCase()]}>
-                {user.status}
-              </span>
+        <Loader />
+        <div>{loading && <Loader />}</div>
+        {users
+          .slice((currentPage - 1) * 10, 10 * currentPage)
+          .map((user: User) => (
+            <div className="result__table-body" key={user.id}>
+              <div>{user?.organisation.slice(0, 12)}...</div>
+              <div>{user.username.slice(0, 25)}...</div>
+              <div>{user.personal_info.email.slice(0, 15)}...</div>
+              <div>{user.personal_info.phone.slice(0, 15)}...</div>
+              <div>{new Date(user.date_joined).toLocaleDateString()}</div>
+              <div>
+                <span className={status_theme[user.status.toLowerCase()]}>
+                  {user.status}
+                </span>
+              </div>
+              <div>
+                <PlainBtn
+                  className="action__btn"
+                  icon={<img src={icons.action} alt="action" />}
+                  onBtnClick={(e) => {
+                    openActionBoard(e);
+                    addItemLocally(user.username);
+                  }}
+                />
+              </div>
             </div>
-            <div>
-              <PlainBtn
-                className="action__btn"
-                icon={<img src={icons.action} alt="action" />}
-                onBtnClick={(e) => {
-                  openActionBoard(e);
-                  addItemLocally(user.username);
-                }}
-              />
-            </div>
-          </div>
-        ))}
+          ))}
       </div>
 
       <div className="doc__tracker">
-        <p className="doc__text">Showing 100 out of 100</p>
+        <p className="doc__text">
+          Showing{" "}
+          {currentPage * 10 > users.length ? users.length : currentPage * 10}{" "}
+          out of {users.length}
+        </p>
 
         <div className="pagination">
           <PlainBtn

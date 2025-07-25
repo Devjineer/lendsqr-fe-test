@@ -35,10 +35,12 @@ $status-colors: (
 }
 
 .section__wrap {
-  // border: solid 2px;
-  padding: 20px 24px 256px 24px;
+  padding: 20px 16px 100px 16px;
   flex: 1;
-  // position: relative;
+
+  @include respond-to(md) {
+    padding: 20px 24px 256px 24px;
+  }
 }
 
 .section__wrap-title {
@@ -153,7 +155,9 @@ $status-colors: (
 
 .doc__tracker {
   // border: solid;
-  @include flex-layout("flex-btw");
+  @include respond-to(md) {
+    @include flex-layout("flex-btw");
+  }
 }
 
 .doc__text {

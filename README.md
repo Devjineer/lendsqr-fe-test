@@ -1,69 +1,40 @@
-# React + TypeScript + Vite
+# Lendsqr Dashboard Clone
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## What I Built
 
-Currently, two official plugins are available:
+This is a Lendsqr dashboard clone built with React and TypeScript. It features authentication (login), a sidebar for navigation, user management pages, and a dashboard overview. The app includes paginated user tables, status indicators, and mock API integration.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Technologies Used and Why
 
-## Expanding the ESLint configuration
+- **React**: For building reusable UI components and managing state.
+- **TypeScript**: For type safety and better developer experience.
+- **SCSS**: For modular and maintainable styling.
+- **Vite**: For fast development and build tooling.
+- **MockAPI**: Used for simulating backend data during development.
+- **LocalStorage**: Chosen for simple client-side persistence (e.g., user details).
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Decisions That Impacted My Work
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- **Component Structure**: Separated layout, common UI elements, and page-specific components for maintainability.
+- **LocalStorage vs IndexedDB**: Used LocalStorage for simplicity, as the data needs were minimal and didn’t require complex querying.
+- **Mock API Source**: Used [MockAPI](https://mockapi.io/) for quick, realistic user data.
+- **Font Integration**: Added custom fonts only to login, Users, and dashboard pages so far; user details page is pending.
+- **Pagination**: Implemented client-side pagination for user lists.
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+## Comparison to Provided Design / Actual Lendsqr Dashboard
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- **Design Fidelity**: The layout and navigation closely follow the provided design. Some minor deviations exist due to limited access to exact assets or fonts.
+- **Functionality**: All major dashboard features are present, but some advanced interactions (e.g., real API calls, notifications) are mocked or simplified.
+- **Styling**: Used SCSS for modular styles, but some responsive details may differ from the original.
+- **Fonts**: Custom fonts are partially integrated; full coverage is pending.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Paths
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- **✅ Deployed App**: [Your Vercel/Netlify Link Here]
+- **✅ GitHub Repo**: [Your GitHub Repo Link Here]
+- **✅ Loom Video Review**: [Your Loom Video Link Here]
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+---
+
+🔗 **Example Google Doc Template:**  
+https://docs.google.com/document/d/1xSAMPLELINK
