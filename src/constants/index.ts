@@ -115,6 +115,11 @@ const settings_navigations = [
     icons: icons.audit,
     href: "/settings/audit-logs",
   },
+  {
+    title: "Systems Messages",
+    icons: icons.tire,
+    href: "/settings/audit-logs",
+  },
 ];
 
 export {

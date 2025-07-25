@@ -35,6 +35,8 @@ import action from "../assets/icons/action.png";
 import activate from "../assets/icons/activate.png";
 import block from "../assets/icons/block.png";
 import eye from "../assets/icons/eye.png";
+import tire from "../assets/icons/tire.png";
+import logout from "../assets/icons/logout.png";
 
 const icons = {
   action,
@@ -74,6 +76,8 @@ const icons = {
   eye,
   activate,
   block,
+  tire,
+  logout,
 };
 
 export default icons;

@@ -4,7 +4,9 @@ declare interface BtnProps {
   iconRight?: ReactNode;
   className?: string;
   type?: string;
-  onBtnClick?: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => Promise<void> | void;
+  onBtnClick?: (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => Promise<void> | void;
 }
 
 declare interface SideBarProps {
@@ -16,6 +18,7 @@ declare interface SideBarProps {
   linkContainer: string;
   linksWrapper: string;
   addedBtnClass?: string;
+  logoutWrap?: string;
   closeSideBar?: () => void;
 }
 

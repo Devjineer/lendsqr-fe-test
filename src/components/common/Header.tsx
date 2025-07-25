@@ -19,6 +19,8 @@ const Header = () => {
           link="header__ul-link"
           linksWrapper="header__nav-ul"
           linkContainer="header__link-container"
+          addedBtnClass="sidebar__btn"
+          logoutWrap="logout__wrap"
           closeSideBar={toggleOff}
         />
       )}
@@ -32,7 +34,7 @@ const Header = () => {
             }
             onBtnClick={toggleOn}
           />
-          
+
           <Link to="/">
             <Logo className="header__logo" imgClassName="header__logo-img" />
           </Link>

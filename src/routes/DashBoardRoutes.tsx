@@ -16,6 +16,7 @@ const DashBoardRoutes = () => {
           linksWrapper="nav__ul"
           linkContainer="link__container"
           addedBtnClass="sidebar__btn"
+          logoutWrap="logout__wrap"
         />
 
         <Routes>

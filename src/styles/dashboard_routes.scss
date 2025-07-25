@@ -29,7 +29,6 @@
 }
 
 .nav__section {
-  // border: 2px solid;
   margin-top: 20px;
 }
 
@@ -68,16 +67,26 @@
   padding: 10px 30px;
   color: color.$dull-blue;
   font-family: fonts.$work-sans;
-  
+
   img {
     width: 10px;
     height: 10px;
     margin-right: 10px;
   }
-  
+
   &.active {
     color: color.$deep-blue;
     background-color: rgba(0, 204, 255, 0.096);
     border-left: 2px solid color.$sky-blue;
+  }
+}
+
+.logout__wrap {
+  border-top: solid 2px color.$dull-blue;
+  padding: 20px 0;
+
+  & > ul > li > button {
+    background-color: transparent;
+    text-align: left;
   }
 }

@@ -5,6 +5,7 @@ import {
   icons,
   settings_navigations,
 } from "../constants";
+import { PlainBtn } from "./common/Btn";
 
 const SideBar = ({
   sidebar,
@@ -13,6 +14,7 @@ const SideBar = ({
   link,
   linkContainer,
   linksWrapper,
+  logoutWrap,
   closeSideBar,
 }: SideBarProps) => {
   const { pathname } = useLocation();
@@ -113,6 +115,22 @@ const SideBar = ({
               </li>
             );
           })}
+        </ul>
+      </nav>
+
+      <nav className={logoutWrap}>
+        <ul className={linksWrapper}>
+          <li
+            className={`${linkContainer}`}
+            onClick={closeSideBar && closeSideBar}
+          >
+            <PlainBtn
+              icon={<img src={icons.logout} />}
+              className={link}
+              title="Logout"
+              onBtnClick={() => console.log("logging out")}
+            />
+          </li>
         </ul>
       </nav>
     </aside>

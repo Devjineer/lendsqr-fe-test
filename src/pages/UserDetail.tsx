@@ -7,7 +7,8 @@ import getItemFromLocalStore from "../utils/local-store";
 
 const UserDetail = () => {
   const [user] = useState(getItemFromLocalStore("user") || {});
-  console.log(user);
+  const [docType, setDocType] = useState("General Details");
+
   return (
     <section className="user__detail">
       <PlainBtn
@@ -36,7 +37,7 @@ const UserDetail = () => {
             </div>
             <div>
               <h3 className="user__name">{user?.username}</h3>
-              <p className="user__id">{user?.id}</p>
+              <p className="user__id">{user?.id ?? "LAKLB22KA"}</p>
             </div>
           </div>
 
@@ -55,29 +56,51 @@ const UserDetail = () => {
           </div>
         </div>
 
-        <div></div>
+        <div className="doc__type no-scrollbar">
+          <div>
+            {[
+              "General Details",
+              "Documents",
+              "Bank Details",
+              "Loans",
+              "Savings",
+              "Apps and System",
+            ].map((item) => {
+              return (
+                <PlainBtn
+                  key={item}
+                  title={item}
+                  className={`${docType == item && "btn__active"}`}
+                  onBtnClick={() => setDocType(item)}
+                />
+              );
+            })}
+          </div>
+        </div>
       </div>
 
       <div className="more__user-detail">
         <MoreDetailsBlock
           title="Personal Information"
+          // details={user?.personal_info}
           details={{
-            fullname: "Grace Effion",
-            phone: user?.phoneNumber,
-            email: user?.email,
-            bvn: user?.bvn,
-            gender: user?.gender ?? "male",
-            status: user?.maritalStatus,
-            children: user?.children ?? 0,
-            residence: "No 3 taj, Hassan",
+            "Full name": user.personal_info.full_name ?? "Grace Effion",
+            "Phone Number": user?.personal_info.phone.slice(0, 11),
+            "Email Address": user?.personal_info.email,
+            bvn: user?.personal_info.bvn.slice(0, 11),
+            gender: user?.personal_info.gender ?? "male",
+            "Marital Status": user?.personal_info.marital_status,
+            children: user?.personal_info.children ?? 0,
+            "Type of Residence":
+              user?.personal_info.residence ?? "No 3 taj, Hassan",
           }}
           displayItems={(item) => (
             <>
               {Object.entries(item).map(([key, item]) => {
                 return (
-                  <div key={key}>
-                    <h4>{key}</h4>
-                    <p>{item}</p>
+                  <div key={key} className="detail__wrap">
+                    <h4 className="detail__wrap-title">{key}</h4>
+                    <p className="detail__wrap-subtitle">{item}</p>
                   </div>
                 );
               })}
@@ -88,22 +111,29 @@ const UserDetail = () => {
         <MoreDetailsBlock
           title="Education and Employment"
           details={{
-            "level of education": user?.education,
-            "employment status": user?.employed ?? "Unemployed",
-            "sector of employment": user?.sectorOfEmployment ?? "Not specified",
-            "duration of employment": "",
-            "office email": "",
-            "monthly income": "",
-            "loan repayment": "",
-            residence: "",
+            "level of education":
+              user?.education_and_employment.level ?? "Not Specified",
+            "employment status":
+              user?.education_and_employment.employment_status ?? "Unemployed",
+            "sector of employment":
+              user?.education_and_employment.sector ?? "Not specified",
+            "duration of employment":
+              user?.education_and_employment.duration ?? "Not Specified",
+            "office email":
+              user?.education_and_employment.office_email ?? "Not Specified",
+            "monthly income": `${
+              user?.education_and_employment.monthly_income[0] ?? 500
+            } - ${user?.education_and_employment.monthly_income[1] ?? 1000}`,
+            "loan repayment":
+              user?.education_and_employment.loan_repayment ?? "Not Specified",
           }}
           displayItems={(item) => (
             <>
               {Object.entries(item).map(([key, item]) => {
                 return (
-                  <div key={key}>
-                    <h4>{key}</h4>
-                    <p>{item}</p>
+                  <div key={key} className="detail__wrap">
+                    <h4 className="detail__wrap-title">{key}</h4>
+                    <p className="detail__wrap-subtitle">{item}</p>
                   </div>
                 );
               })}
@@ -113,22 +143,17 @@ const UserDetail = () => {
         <MoreDetailsBlock
           title="Socials"
           details={{
-            fullname: "",
-            phone: "",
-            email: "",
-            bvn: "",
-            gender: "",
-            status: "",
-            children: "",
-            residence: "",
+            twitter: user?.socials.twiiter ?? "Not specified",
+            facebook: user?.socials.facebook ?? "Not specified",
+            instagram: user?.socials.instagram ?? "Not specified",
           }}
           displayItems={(item) => (
             <>
               {Object.entries(item).map(([key, item]) => {
                 return (
-                  <div key={key}>
-                    <h4>{key}</h4>
-                    <p>{item}</p>
+                  <div key={key} className="detail__wrap">
+                    <h4 className="detail__wrap-title">{key}</h4>
+                    <p className="detail__wrap-subtitle">{item}</p>
                   </div>
                 );
               })}
@@ -138,18 +163,18 @@ const UserDetail = () => {
         <MoreDetailsBlock
           title="Guarantors"
           details={{
-            fullname: user?.guarantorName ?? "Not specified",
-            phone: user?.guarantorPhone ?? "Not specified",
-            email: user?.guarantorEmail ?? "Not specified",
-            relationship: user?.guarantorRltshp ?? "Not specified",
+            fullname: user?.guarantor.full_name ?? "Not specified",
+            phone: user?.guarantor.phone ?? "Not specified",
+            email: user?.guarantor.email ?? "Not specified",
+            relationship: user?.guarantor.relationship ?? "Not specified",
           }}
           displayItems={(item) => (
             <>
               {Object.entries(item).map(([key, item]) => {
                 return (
-                  <div key={key}>
-                    <h4>{key}</h4>
-                    <p>{item}</p>
+                  <div key={key} className="detail__wrap">
+                    <h4 className="detail__wrap-title">{key}</h4>
+                    <p className="detail__wrap-subtitle">{item}</p>
                   </div>
                 );
               })}
