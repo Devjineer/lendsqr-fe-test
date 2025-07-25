@@ -1,7 +1,7 @@
 import { images } from "../../constants";
 import IconWrapper from "./IconWrapper";
 
-const Logo = ({ className, imgClassName }) => {
+const Logo = ({ className, imgClassName }: LogoProps) => {
   return (
     <IconWrapper
       src={images.logo}

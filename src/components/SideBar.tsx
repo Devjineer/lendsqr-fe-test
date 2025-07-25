@@ -14,8 +14,7 @@ const SideBar = ({
   link,
   linkContainer,
   linksWrapper,
-  // addedBtnClass,
-  // active,
+  closeSideBar,
 }: SideBarProps) => {
   const { pathname } = useLocation();
 
@@ -24,8 +23,16 @@ const SideBar = ({
       {/* Dashboard Section */}
       <nav className={section}>
         <ul className={linksWrapper}>
-          <li className={`${linkContainer}`}>
-            <Link className={`${link}`.trim()} to="/">
+          <li
+            className={`${linkContainer}`}
+            onClick={closeSideBar && closeSideBar}
+          >
+            <Link
+              className={`${link} ${
+                pathname == "/dashboard" && "active"
+              }`.trim()}
+              to="/dashboard"
+            >
               <img src={icons.dashboard} /> <span>Dashboard</span>
             </Link>
           </li>
@@ -38,7 +45,11 @@ const SideBar = ({
         <ul className={linksWrapper}>
           {customers_navigation.map((navigation) => {
             return (
-              <li key={navigation.title} className={`${linkContainer}`}>
+              <li
+                key={navigation.title}
+                className={`${linkContainer}`}
+                onClick={closeSideBar && closeSideBar}
+              >
                 <Link
                   className={`${link} ${
                     pathname == navigation.href && "active"
@@ -60,7 +71,11 @@ const SideBar = ({
         <ul className={linksWrapper}>
           {business_navigations.map((navigation) => {
             return (
-              <li key={navigation.title} className={`${linkContainer}`}>
+              <li
+                key={navigation.title}
+                className={`${linkContainer}`}
+                onClick={closeSideBar && closeSideBar}
+              >
                 <Link
                   className={`${link} ${
                     pathname == navigation.href && "active"
@@ -82,7 +97,11 @@ const SideBar = ({
         <ul className={linksWrapper}>
           {settings_navigations.map((navigation) => {
             return (
-              <li key={navigation.title} className={`${linkContainer}`}>
+              <li
+                key={navigation.title}
+                className={`${linkContainer}`}
+                onClick={closeSideBar && closeSideBar}
+              >
                 <Link
                   className={`${link} ${
                     pathname == navigation.href && "active"

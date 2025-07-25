@@ -29,73 +29,75 @@ $status-colors: (
   color: $color;
   background-color: $background;
   padding: 4px 8px;
-  // border-radius: 20px;
-}
-
-.users {
-  // border: solid 2px;
-  padding: 20px 24px 256px 24px;
-  flex: 1;
-}
-
-.result__table {
-  background-color: white;
-  padding: 30px;
-  border: solid 1px #213f7d0f;
-  overflow: hidden;
-  overflow-x: scroll;
-}
-
-.result__table-head,
-.result__table-body {
-  display: grid;
-  grid-template-columns: 116px 106px 147px 124px 154px 100px 20px;
-  column-gap: 35px;
-  padding: 22.5px 0;
+  border-radius: 20px;
   width: fit-content;
-
-  & > div {
-    font-size: 14px;
-    color: color.$deep-blue;
-    // border: solid 2px;
-    flex-direction: column;
-    @include flex-layout("flex-center", "flex-start");
-  }
-
-  @include respond-to(md) {
-    grid-template-columns: 12% 11% 15% 13% 16% 10% 2%;
-    width: 100%;
-    // column-gap: 35px;
-    column-gap: 3%;
-    // width: fit-content;
-  }
 }
 
-.result__table-head > div{
-font-weight: bold;
-}
+// .users {
+//   // border: solid 2px;
+//   padding: 20px 24px 256px 24px;
+//   flex: 1;
+// }
 
-.result__table-body {
-  border-bottom: #213f7d0f solid 2px;
+// .result__table {
+//   background-color: white;
+//   padding: 30px;
+//   border: solid 1px #213f7d0f;
+//   overflow: hidden;
+//   overflow-x: scroll;
+// }
 
-  .action__btn {
-    background-color: transparent;
-  }
-}
+// .result__table-head,
+// .result__table-body {
+//   display: grid;
+//   grid-template-columns: 116px 106px 147px 124px 154px 100px 20px;
+//   column-gap: 35px;
+//   padding: 22.5px 0;
+//   width: fit-content;
 
-.active {
-  @include status-style("active");
-  // border-radius: 20px;
-}
-.inactive {
-  @include status-style("inactive");
-  // border-radius: 20px;
-}
-.pending {
-  @include status-style("pending");
-  // border-radius: 20px;
-}
-.blocked {
-  @include status-style("blacklisted");
-  // border-radius: 20px;
-}
+//   & > div {
+//     font-size: 14px;
+//     color: color.$deep-blue;
+//     // border: solid 2px;
+//     flex-direction: column;
+//     @include flex-layout("flex-center", "flex-start");
+//   }
+
+//   @include respond-to(md) {
+//     grid-template-columns: 12% 11% 15% 13% 16% 10% 2%;
+//     width: 100%;
+//     // column-gap: 35px;
+//     column-gap: 3%;
+//     // width: fit-content;
+//   }
+// }
+
+// .result__table-head > div {
+//   font-weight: bold;
+// }
+
+// .result__table-body {
+//   border-bottom: #213f7d0f solid 2px;
+
+//   .action__btn {
+//     background-color: transparent;
+//   }
+// }
+
+// .active__user {
+//   @include status-style("active");
+//   // border-radius: 20px;
+// }
+
+// .inactive__user {
+//   @include status-style("inactive");
+//   border-radius: 20px;
+// }
+// .pending__user {
+//   @include status-style("pending");
+//   border-radius: 20px;
+// }
+// .blocked__user {
+//   @include status-style("blacklisted");
+//   border-radius: 20px;
+// }

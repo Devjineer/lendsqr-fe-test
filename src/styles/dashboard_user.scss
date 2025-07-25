@@ -1,0 +1,139 @@
+@use "sass:map";
+@use "color";
+@use "./responsive-mixin" as *;
+@use "./layout" as *;
+
+$status-colors: (
+  "active": (
+    text: color.$green,
+    background: color.$green-light,
+  ),
+  "inactive": (
+    text: color.$deep-blue,
+    background: color.$deep-blue-light,
+  ),
+  "pending": (
+    text: color.$yellow,
+    background: color.$yellow-light,
+  ),
+  "blacklisted": (
+    text: color.$danger,
+    background: color.$danger-light,
+  ),
+);
+
+@mixin status-style($status) {
+  $color: map.get(map.get($status-colors, $status), "text");
+  $background: map.get(map.get($status-colors, $status), "background");
+
+  color: $color;
+  background-color: $background;
+  padding: 4px 8px;
+  border-radius: 20px;
+  width: fit-content;
+}
+
+.section__wrap {
+  // border: solid 2px;
+  padding: 20px 24px 256px 24px;
+  flex: 1;
+  // position: relative;
+}
+
+.result__table {
+  background-color: white;
+  padding: 30px;
+  border: solid 1px #213f7d0f;
+  overflow: hidden;
+  overflow-x: scroll;
+}
+
+.result__table-head,
+.result__table-body {
+  display: grid;
+  grid-template-columns: 116px 106px 147px 124px 154px 100px 20px;
+  column-gap: 35px;
+  padding: 22.5px 0;
+  width: fit-content;
+
+  & > div {
+    font-size: 14px;
+    color: color.$deep-blue;
+    // border: solid 2px;
+    flex-direction: column;
+    @include flex-layout("flex-center", "flex-start");
+  }
+
+  @include respond-to(md) {
+    grid-template-columns: 12% 11% 15% 13% 16% 10% 2%;
+    width: 100%;
+    // column-gap: 35px;
+    column-gap: 3%;
+    // width: fit-content;
+  }
+}
+
+.result__table-head > div {
+  font-weight: bold;
+}
+
+.result__table-body {
+  border-bottom: #213f7d0f solid 2px;
+
+  .action__btn {
+    background-color: transparent;
+  }
+}
+
+// user status styles
+.active__user {
+  @include status-style("active");
+  // border-radius: 20px;
+}
+
+.inactive__user {
+  @include status-style("inactive");
+  border-radius: 20px;
+}
+
+.pending__user {
+  @include status-style("pending");
+  border-radius: 20px;
+}
+
+.blocked__user {
+  @include status-style("blacklisted");
+  border-radius: 20px;
+}
+
+.call__action {
+  width: 180px;
+  height: 130px;
+  background-color: white;
+  position: absolute;
+  z-index: 20;
+  border: solid 1px #545f7d0a;
+  border-radius: 4px;
+  padding: 20px;
+
+  & > div {
+    @include flex-layout("flex-center", "flex-start");
+    flex-direction: column;
+    row-gap: 20px
+  }
+}
+
+.call__action-link {
+  @include flex-layout("flex-it");
+  column-gap: 8px;
+  font-size: 14px;
+  color: color.$deep-blue;
+  text-decoration: none;
+  background-color: transparent;
+
+  img {
+    width: 16px;
+    height: 16px;
+    // border: solid 2px;
+  }
+}

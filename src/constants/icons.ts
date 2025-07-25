@@ -32,6 +32,9 @@ import star from "../assets/icons/star.png";
 import star_filled from "../assets/icons/star_filled.png";
 import no_photo from "../assets/icons/no_photo.png";
 import action from "../assets/icons/action.png";
+import activate from "../assets/icons/activate.png";
+import block from "../assets/icons/block.png";
+import eye from "../assets/icons/eye.png";
 
 const icons = {
   action,
@@ -68,6 +71,9 @@ const icons = {
   transact,
   star,
   star_filled,
+  eye,
+  activate,
+  block,
 };
 
 export default icons;

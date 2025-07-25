@@ -1,9 +1,7 @@
-import React from 'react'
+import DashBoardUserLayout from "../components/template/DashBoardUserLayout";
 
 const Dashboard = () => {
-  return (
-    <div>Dashboard</div>
-  )
-}
+  return <DashBoardUserLayout sectionTitle="Dashboard" />;
+};
 
-export default Dashboard
+export default Dashboard;

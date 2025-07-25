@@ -3,11 +3,12 @@ import { icons, images } from "../../constants";
 import { PlainBtn } from "./Btn";
 import IconWrapper from "./IconWrapper";
 import Logo from "./Logo";
-import { useState } from "react";
 import SideBar from "../SideBar";
+import useToggle from "../../contexts/useToggle";
+import { Link } from "react-router";
 
 const Header = () => {
-  const [toggle, setToggle] = useState(false);
+  const { toggle, toggleOn, toggleOff } = useToggle();
   return (
     <header className="header">
       {toggle && (
@@ -18,6 +19,7 @@ const Header = () => {
           link="header__ul-link"
           linksWrapper="header__nav-ul"
           linkContainer="header__link-container"
+          closeSideBar={toggleOff}
         />
       )}
 
@@ -28,9 +30,11 @@ const Header = () => {
             icon={
               <img className="menu__btn-icon" alt="menu" src={icons.menu} />
             }
-            onBtnClick={() => setToggle((prev) => !prev)}
+            onBtnClick={toggleOn}
           />
-          <Logo className="header__logo" imgClassName="header__logo-img" />
+          <Link to="/">
+            <Logo className="header__logo" imgClassName="header__logo-img" />
+          </Link>
         </div>
 
         <div className="searchbar">
@@ -39,6 +43,7 @@ const Header = () => {
             placeholder="Search for anything"
             className="searchbar__input"
           />
+
           <PlainBtn
             className="searchbar__btn"
             icon={

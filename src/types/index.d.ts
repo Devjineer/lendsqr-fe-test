@@ -4,7 +4,7 @@ declare interface BtnProps {
   iconRight?: ReactNode;
   className?: string;
   type?: string;
-  onBtnClick?: () => void;
+  onBtnClick?: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => Promise<void> | void;
 }
 
 declare interface SideBarProps {
@@ -16,10 +16,26 @@ declare interface SideBarProps {
   linkContainer: string;
   linksWrapper: string;
   addedBtnClass?: string;
+  closeSideBar?: () => void;
 }
 
 declare interface MoreDetailsBlockProps<T> {
   title: string;
   details: T;
   displayItems: (details: T) => ReactNode;
+}
+
+declare interface User {
+  id: string;
+  organisation: string;
+  username: string;
+  email: string;
+  phoneNumber: string;
+  dateJoined: number;
+  status: string;
+}
+
+declare interface LogoProps {
+  className: string;
+  imgClassName: string;
 }
