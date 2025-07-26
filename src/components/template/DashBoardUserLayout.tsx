@@ -7,10 +7,11 @@ import getItemFromLocalStore, {
   addItemToLocalStore,
 } from "@/utils/local-store";
 import { icons } from "@/constants";
-import { PlainBtn } from "../common/Btn";
 import UserTabs from "../users/UserTabs";
 import Loader from "../loaders/Loader";
 import "@/styles/dashboard_user.scss";
+import { PlainBtn } from "../common/Btn";
+import FilterForm from "../FilterForm";
 
 const status_theme: { [key: string]: string } = {
   active: "active__user",
@@ -20,8 +21,13 @@ const status_theme: { [key: string]: string } = {
 };
 
 const DashBoardUserLayout = ({ sectionTitle }: { sectionTitle: string }) => {
-  // const [users, setUsers] = useState<User[]>([]);
   const { toggle, toggleOn, toggleOff } = useToggle();
+  const {
+    toggle: formToggle,
+    toggleOn: formToggleOn,
+    toggleOff: formToggleOff,
+  } = useToggle();
+
   const actionBoard = useRef<HTMLDivElement | null>(null);
 
   const fetchUsers = useCallback(async () => fetchAllUsers(), []);
@@ -46,7 +52,7 @@ const DashBoardUserLayout = ({ sectionTitle }: { sectionTitle: string }) => {
     };
   }, [toggleOff]);
 
-  // call to add to local storage
+  // Function to add the current user to local storage
   const addItemLocally = (username: string) => {
     const currentItem = users.filter((user) => user.username == username)[0];
     console.log(currentItem);
@@ -98,19 +104,67 @@ const DashBoardUserLayout = ({ sectionTitle }: { sectionTitle: string }) => {
           </div>
         </div>
       )}
+
       <h2 className="section__wrap-title">{sectionTitle}</h2>
 
       <UserTabs />
 
       <div className="result__table">
         <div className="result__table-head">
-          <div>Organization</div>
-          <div>Username</div>
-          <div>Email</div>
-          <div>Phone Number</div>
-          <div>Date Joined</div>
-          <div>Status</div>
+          <div>
+            Organization
+            <PlainBtn
+              onBtnClick={formToggleOn}
+              icon={<img src={icons.filter} />}
+              className="filter__btn"
+            />
+          </div>
+          <div>
+            Username
+            <PlainBtn
+              onBtnClick={formToggleOn}
+              icon={<img src={icons.filter} />}
+              className="filter__btn"
+            />
+          </div>
+          <div>
+            Email
+            <PlainBtn
+              onBtnClick={formToggleOn}
+              icon={<img src={icons.filter} />}
+              className="filter__btn"
+            />
+          </div>
+          <div>
+            Phone Number
+            <PlainBtn
+              onBtnClick={formToggleOn}
+              icon={<img src={icons.filter} />}
+              className="filter__btn"
+            />
+          </div>
+          <div>
+            Date Joined
+            <PlainBtn
+              onBtnClick={formToggleOn}
+              icon={<img src={icons.filter} />}
+              className="filter__btn"
+            />
+          </div>
+          <div>
+            Status
+            <PlainBtn
+              onBtnClick={formToggleOn}
+              icon={<img src={icons.filter} />}
+              className="filter__btn"
+            />
+          </div>
         </div>
+
+        {/* fiter form */}
+        {formToggle && <FilterForm closeForm={formToggleOff} />}
+
+        {/* the data of users into table */}
         {loading ? (
           <Loader />
         ) : (
@@ -158,6 +212,8 @@ const DashBoardUserLayout = ({ sectionTitle }: { sectionTitle: string }) => {
             onBtnClick={() => {
               if (currentPage > 1) {
                 setCurrentPage(currentPage - 1);
+
+                // Update local storage with the new current page to persist state
                 addItemToLocalStore("currentPage", currentPage - 1);
               }
             }}
@@ -182,6 +238,8 @@ const DashBoardUserLayout = ({ sectionTitle }: { sectionTitle: string }) => {
             onBtnClick={() => {
               if (currentPage < pages.length) {
                 setCurrentPage(currentPage + 1);
+
+                // Update local storage with the new current page to persist state
                 addItemToLocalStore("currentPage", currentPage + 1);
               }
             }}

@@ -4,8 +4,10 @@ import MoreDetailsBlock from "../components/users/MoreDetailsBlock";
 import { icons } from "../constants";
 import "../styles/user_detail.scss";
 import getItemFromLocalStore from "../utils/local-store";
+import useTitle from "@/contexts/useTitle";
 
 const UserDetail = () => {
+  useTitle("User Detail - Lendsqr");
   const [user] = useState(getItemFromLocalStore("user") || {});
   const [docType, setDocType] = useState("General Details");
 

@@ -1,0 +1,82 @@
+@use "color";
+@use "fonts";
+@use "./responsive-mixin" as *;
+@use "./layout" as *;
+
+@mixin form-btn($color, $bg-color: transparent) {
+  padding: 12px 30px;
+  // background-color: if ( $color != null, $color , 'transparent');
+  background-color: $bg-color;
+  color: $color;
+  border: solid 1px $color;
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: fonts.$work-sans;
+  font-weight: 600;
+}
+
+.form {
+  padding: 30px 20px;
+  border: solid 1px #545f7d24;
+  border-radius: 4px;
+  box-shadow: 3px 5px 20px #0000000a;
+  max-width: 270px;
+  position: absolute;
+  top: 100px;
+  left: 50px;
+  background-color: white;
+  z-index: 20;
+}
+
+.close-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-family: fonts.$work-sans;
+  font-size: 10px;
+
+  // img {
+  //   width: 16px;
+  //   height: 16px;
+  // }
+}
+
+.input__group {
+  // margin-bottom: 20px;
+  &:not(:first-of-type){
+    margin-top: 16px;
+  }
+}
+
+.input__label {
+  display: block;
+  font-size: 14px;
+  color: color.$deep-blue;
+  font-weight: 500;
+  margin-bottom: 6px;
+  font-family: fonts.$work-sans;
+}
+
+.input__main {
+  border: solid 1px color.$dull-blue;
+  width: 100%;
+  border-radius: 8px;
+  padding: 12px 20px;
+}
+
+.btn__container {
+  @include flex-layout("flex-btw");
+  margin-top: 30px;
+}
+
+.reset-btn {
+  @include form-btn(color.$deep-blue);
+}
+
+.filter-btn {
+  @include form-btn("white", color.$sky-blue);
+  color: white;
+}

@@ -3,8 +3,11 @@ import { PlainBtn } from "../components/common/Btn";
 import "../styles/login.scss";
 import Logo from "../components/common/Logo";
 import { images } from "../constants";
+import useTitle from "@/contexts/useTitle";
 
 const Login = () => {
+  useTitle("Login - Lendsqr");
+  
   const navigate = useNavigate();
   const navigateToDashboard = () => navigate("/dashboard");
 
