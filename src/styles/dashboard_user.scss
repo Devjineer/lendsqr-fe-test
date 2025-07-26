@@ -154,7 +154,7 @@ $status-colors: (
 }
 
 .doc__tracker {
-  // border: solid;
+  margin-top: 20px;
   @include respond-to(md) {
     @include flex-layout("flex-btw");
   }
@@ -162,12 +162,24 @@ $status-colors: (
 
 .doc__text {
   font-family: fonts.$work-sans;
+  font-size: 12px;
+  text-align: center;
+
+  @include respond-to(md) {
+    font-size: 14px;
+  }
 }
 
 .pagination {
-  @include flex-layout("flex-btw");
+  @include flex-layout("flex-center");
+  gap: 20px;
   font-size: 14px;
   margin-top: 20px;
+
+  @include respond-to(md) {
+    @include flex-layout("flex-btw");
+    margin-top: 0;
+  }
 }
 
 .pagination__btn {
@@ -183,18 +195,19 @@ $status-colors: (
   }
 }
 
-
 .pagination__main {
-  width: 225px;
+  width: 100px;
   border: solid 1px #545f7d0a;
-  @include flex-layout("flex-btw");
+  @include flex-layout("flex-it");
+  gap: 10px;
+  padding: 0 5px;
 
   & > span {
     font-family: fonts.$work-sans;
 
     &.active__span {
       color: color.$deep-blue;
-      font-weight: bold;  
+      font-weight: bold;
     }
   }
 }

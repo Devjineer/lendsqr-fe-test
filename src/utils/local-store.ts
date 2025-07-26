@@ -4,8 +4,7 @@ const addItemToLocalStore = <T>(key: string, item: T) => {
 
 const getItemFromLocalStore = (key: string) => {
   const item = localStorage.getItem(key);
-  if (!item) throw new Error(`${key} not found`);
-  return JSON.parse(item);
+  return item != null || item != undefined ? JSON.parse(item) : null;
 };
 
 export { addItemToLocalStore, getItemFromLocalStore as default };

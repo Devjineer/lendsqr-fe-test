@@ -1,14 +1,16 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import UserTabs from "../users/UserTabs";
-import { PlainBtn } from "../common/Btn";
-import { icons } from "../../constants";
-import "./../../styles/dashboard_user.scss";
-import useToggle from "../../contexts/useToggle";
 import { Link } from "react-router";
-import { addItemToLocalStore } from "../../utils/local-store";
-import { fetchAllUsers } from "../../services/fetchAllUsers";
-import useResource from "../../contexts/useResource";
+import { fetchAllUsers } from "@/services/fetchAllUsers";
+import useToggle from "@/contexts/useToggle";
+import useResource from "@/contexts/useResource";
+import getItemFromLocalStore, {
+  addItemToLocalStore,
+} from "@/utils/local-store";
+import { icons } from "@/constants";
+import { PlainBtn } from "../common/Btn";
+import UserTabs from "../users/UserTabs";
 import Loader from "../loaders/Loader";
+import "@/styles/dashboard_user.scss";
 
 const status_theme: { [key: string]: string } = {
   active: "active__user",
@@ -26,7 +28,9 @@ const DashBoardUserLayout = ({ sectionTitle }: { sectionTitle: string }) => {
   const { data: users, loading } = useResource<User>(fetchUsers);
 
   const [pages, setPages] = useState<number[]>([]);
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(
+    getItemFromLocalStore("currentPage") ?? 1
+  );
 
   useEffect(() => {
     const pagesArray = new Array(Math.ceil(users.length / 10))
@@ -107,34 +111,38 @@ const DashBoardUserLayout = ({ sectionTitle }: { sectionTitle: string }) => {
           <div>Date Joined</div>
           <div>Status</div>
         </div>
-        <Loader />
-        <div>{loading && <Loader />}</div>
-        {users
-          .slice((currentPage - 1) * 10, 10 * currentPage)
-          .map((user: User) => (
-            <div className="result__table-body" key={user.id}>
-              <div>{user?.organisation.slice(0, 12)}...</div>
-              <div>{user.username.slice(0, 25)}...</div>
-              <div>{user.personal_info.email.slice(0, 15)}...</div>
-              <div>{user.personal_info.phone.slice(0, 15)}...</div>
-              <div>{new Date(user.date_joined).toLocaleDateString()}</div>
-              <div>
-                <span className={status_theme[user.status.toLowerCase()]}>
-                  {user.status}
-                </span>
-              </div>
-              <div>
-                <PlainBtn
-                  className="action__btn"
-                  icon={<img src={icons.action} alt="action" />}
-                  onBtnClick={(e) => {
-                    openActionBoard(e);
-                    addItemLocally(user.username);
-                  }}
-                />
-              </div>
-            </div>
-          ))}
+        {loading ? (
+          <Loader />
+        ) : (
+          <>
+            {users
+              .slice((currentPage - 1) * 10, 10 * currentPage)
+              .map((user: User) => (
+                <div className="result__table-body" key={user.id}>
+                  <div>{user?.organisation.slice(0, 12)}...</div>
+                  <div>{user.username.slice(0, 25)}...</div>
+                  <div>{user.personal_info.email.slice(0, 15)}...</div>
+                  <div>{user.personal_info.phone.slice(0, 15)}...</div>
+                  <div>{new Date(user.date_joined).toLocaleDateString()}</div>
+                  <div>
+                    <span className={status_theme[user.status.toLowerCase()]}>
+                      {user.status}
+                    </span>
+                  </div>
+                  <div>
+                    <PlainBtn
+                      className="action__btn"
+                      icon={<img src={icons.action} alt="action" />}
+                      onBtnClick={(e) => {
+                        openActionBoard(e);
+                        addItemLocally(user.username);
+                      }}
+                    />
+                  </div>
+                </div>
+              ))}
+          </>
+        )}
       </div>
 
       <div className="doc__tracker">
@@ -150,12 +158,13 @@ const DashBoardUserLayout = ({ sectionTitle }: { sectionTitle: string }) => {
             onBtnClick={() => {
               if (currentPage > 1) {
                 setCurrentPage(currentPage - 1);
+                addItemToLocalStore("currentPage", currentPage - 1);
               }
             }}
           />
 
           <div className="pagination__main">
-            {pages.map((page) => {
+            {pages.slice(currentPage - 1, currentPage + 2).map((page) => {
               return (
                 <span
                   key={page}
@@ -165,6 +174,7 @@ const DashBoardUserLayout = ({ sectionTitle }: { sectionTitle: string }) => {
                 </span>
               );
             })}
+            ...
           </div>
 
           <PlainBtn
@@ -172,6 +182,7 @@ const DashBoardUserLayout = ({ sectionTitle }: { sectionTitle: string }) => {
             onBtnClick={() => {
               if (currentPage < pages.length) {
                 setCurrentPage(currentPage + 1);
+                addItemToLocalStore("currentPage", currentPage + 1);
               }
             }}
           />

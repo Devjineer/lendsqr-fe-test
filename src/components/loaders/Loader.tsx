@@ -1,5 +1,13 @@
+import "../../styles/loader.scss";
 const Loader = () => {
-  return <span className="loader"></span>;
+  return (
+    <div className="loader__container">
+      <div>
+        <span className="loader"></span>
+        <div className="loader__text">Loading...</div>
+      </div>
+    </div>
+  );
 };
 
 export default Loader;

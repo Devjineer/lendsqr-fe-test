@@ -1,4 +1,21 @@
 @use "color";
+@use "fonts";
+@use "./responsive-mixin" as *;
+@use "./layout" as *;
+
+.loader__container {
+  @include flex-layout("flex-center");
+  height: 200px;
+  width: 100%;
+}
+
+.loader__text {
+  font-size: 12px;
+  color: color.$deep-blue;
+  font-family: fonts.$work-sans;
+  margin-top: 10px;
+  text-align: center;
+}
 
 .loader {
   position: relative;
