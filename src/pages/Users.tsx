@@ -1,4 +1,3 @@
-import "../styles/users.scss";
 import DashBoardUserLayout from "../components/template/DashBoardUserLayout";
 import useTitle from "@/contexts/useTitle";
 

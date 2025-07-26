@@ -200,8 +200,8 @@ const DashBoardUserLayout = ({ sectionTitle }: { sectionTitle: string }) => {
 
       <div className="doc__tracker">
         <p className="doc__text">
-          Showing{" "}
-          {currentPage * 10 > users.length ? users.length : currentPage * 10}{" "}
+          Showing
+          {currentPage * 10 > users.length ? users.length : currentPage * 10}
           out of {users.length}
         </p>
 
