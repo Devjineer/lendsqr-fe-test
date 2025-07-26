@@ -6,6 +6,7 @@ import Logo from "./Logo";
 import SideBar from "../SideBar";
 import useToggle from "../../contexts/useToggle";
 import { Link } from "react-router";
+import { scrollLock, scrollUnlock } from "@/utils/handle-scrolling";
 
 const Header = () => {
   const { toggle, toggleOn, toggleOff } = useToggle();
@@ -21,7 +22,10 @@ const Header = () => {
           linkContainer="header__link-container"
           addedBtnClass="sidebar__btn"
           logoutWrap="logout__wrap"
-          closeSideBar={toggleOff}
+          closeSideBar={() => {
+            toggleOff();
+            scrollUnlock();
+          }}
         />
       )}
 
@@ -32,7 +36,10 @@ const Header = () => {
             icon={
               <img className="menu__btn-icon" alt="menu" src={icons.menu} />
             }
-            onBtnClick={toggleOn}
+            onBtnClick={() => {
+              toggleOn();
+              scrollLock();
+            }}
           />
 
           <Link to="/">
@@ -60,10 +67,7 @@ const Header = () => {
         </div>
 
         <div className="header__right">
-          <a
-            href="/"
-            className="header__link"
-          >
+          <a href="/" className="header__link">
             Docs
           </a>
 
