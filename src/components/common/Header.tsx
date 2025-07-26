@@ -61,7 +61,6 @@ const Header = () => {
 
         <div className="header__right">
           <a
-            // href="/dashboard/user-detail"
             href="/"
             className="header__link"
           >

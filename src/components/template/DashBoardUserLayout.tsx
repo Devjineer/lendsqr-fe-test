@@ -55,7 +55,6 @@ const DashBoardUserLayout = ({ sectionTitle }: { sectionTitle: string }) => {
   // Function to add the current user to local storage
   const addItemLocally = (username: string) => {
     const currentItem = users.filter((user) => user.username == username)[0];
-    console.log(currentItem);
     addItemToLocalStore("user", currentItem);
   };
 

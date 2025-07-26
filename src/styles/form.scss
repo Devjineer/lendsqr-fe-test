@@ -37,18 +37,10 @@
   cursor: pointer;
   font-family: fonts.$work-sans;
   font-size: 10px;
-
-  // img {
-  //   width: 16px;
-  //   height: 16px;
-  // }
 }
 
-.input__group {
-  // margin-bottom: 20px;
-  &:not(:first-of-type){
-    margin-top: 16px;
-  }
+.input__group:not(:first-of-type) {
+  margin-top: 16px;
 }
 
 .input__label {

@@ -4,18 +4,15 @@
 @use "./layout" as *;
 
 .dashboard {
-  // border: solid 2px orange;
 
   @include respond-to(md) {
     @include flex-layout("flex-it", "flex-start");
     height: calc(100% - 100px);
-    // border: solid 8px orange;
   }
 }
 
 .sidebar {
   width: 300px;
-  // border: solid 2px red;
   height: calc(100vh - 80px);
   display: none;
   overflow-y: scroll;
@@ -42,13 +39,11 @@
 }
 
 .nav__ul {
-  // border: solid 2px red;
   list-style: none;
   margin-top: 10px;
 }
 
 .link__container {
-  // border: solid 2px;
   font-size: 12px;
   column-gap: 10px;
 

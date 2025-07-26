@@ -19,7 +19,6 @@
 }
 
 .user__detail {
-  // border: solid 2px;
   padding: 20px 24px;
   flex: 1;
   padding-bottom: 153px;
@@ -187,7 +186,6 @@
 }
 
 .doc__type {
-  // border: solid;
   overflow: hidden;
   overflow-x: scroll;
   margin-top: 20px;
@@ -195,7 +193,6 @@
   & > div {
     @include flex-layout("flex-btw");
     column-gap: 20px;
-    // width: fit-content;
   }
 
   & > div > button {
@@ -211,7 +208,6 @@
   }
 
   @include respond-to(md) {
-    // margin-top: 0;
   }
 }
 
@@ -223,7 +219,6 @@
 
 .detail__box {
   padding: 15px;
-  // border: solid 2px red;
 
   @include respond-to(md) {
     padding: 30px;

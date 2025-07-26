@@ -84,7 +84,6 @@ const UserDetail = () => {
       <div className="more__user-detail">
         <MoreDetailsBlock
           title="Personal Information"
-          // details={user?.personal_info}
           details={{
             "Full name": user.personal_info.full_name ?? "Grace Effion",
             "Phone Number": user?.personal_info.phone.slice(0, 11),

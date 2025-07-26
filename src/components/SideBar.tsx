@@ -128,7 +128,6 @@ const SideBar = ({
               icon={<img src={icons.logout} />}
               className={link}
               title="Logout"
-              onBtnClick={() => console.log("logging out")}
             />
           </li>
         </ul>

@@ -113,7 +113,6 @@ $status-colors: (
 // user status styles
 .active__user {
   @include status-style("active");
-  // border-radius: 20px;
 }
 
 .inactive__user {
@@ -161,7 +160,6 @@ $status-colors: (
   img {
     width: 16px;
     height: 16px;
-    // border: solid 2px;
   }
 }
 

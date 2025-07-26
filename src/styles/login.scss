@@ -13,14 +13,11 @@
 }
 
 .login__image-section {
-  // border: solid 2px;
 
   @include respond-to(md) {
-    // display: flex;
     align-items: center;
     justify-content: center;
     width: 52%;
-    // border: 2px solid red;
     position: relative;
   }
 }
@@ -30,12 +27,10 @@
   height: 72px;
   display: flex;
   align-items: center;
-  // border: solid 2px red;
 }
 
 .login__logo {
   width: 120px;
-  // border: solid 2px;
 
   .login__logo-img {
     width: 100%;
@@ -61,7 +56,6 @@
   }
 
   @include respond-to(md) {
-    // border: solid 2px;
     height: calc(100% - 72px);
     display: flex;
     align-items: center;
@@ -73,12 +67,10 @@
 }
 
 .login__form-section {
-  // min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 0 1.6rem;
-  // box-shadow: 0 -5px 5px #545F7D26;
   margin-top: 24px;
 
   .login__content {
@@ -90,7 +82,6 @@
     flex: 1;
     box-shadow: 0 -5px 5px #545f7d26;
     padding: 0 6.8rem 0 3.3rem;
-    // background-color: red;
   }
 
   @include respond-to(lg) {
@@ -103,7 +94,6 @@
   font-weight: bold;
   font-size: 28px;
   font-family: fonts.$avenir-bold;
-  // font-size: 40px;
 }
 
 .login__subtitle {
@@ -117,15 +107,14 @@
   margin-top: 20px;
 }
 
-.login__input-group {
-}
+// .login__input-group {
+// }
 
 .login__input-wrapper {
   border: 2px solid #545f7d26;
   border-radius: 5px;
   background: #fff;
   display: flex;
-  // height: 50px;
   height: 44px;
 
   &.login__input-wrapper--spaced {
